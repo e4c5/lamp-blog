@@ -11,8 +11,8 @@ def contact(request):
     else:
         form = ContactForm(data=request.POST, files=request.FILES)
         if form.is_valid():
-            mail.send_mail(sender = 'raditha-mailer@radithablog.appspotmail.com', 
-                           to = 'raditha.dissanayake@gmail.com',
+            mail.send_mail(sender = 'you@yuou.appspotmail.com', 
+                           to = 'your@gmail.com',
                             subject = 'raditha.com online inquiry', 
                            body = form.cleaned_data['body'], reply_to = form.cleaned_data['email'],
                            headers = {'On-Behalf-Of' : form.cleaned_data['email'],})

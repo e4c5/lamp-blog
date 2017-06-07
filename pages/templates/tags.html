@@ -1,0 +1,17 @@
+{% extends 'layout.html' %}
+{% block extra_headers %}<meta name="robots" content="noindex, follow">{% endblock %}
+
+
+{% block title %}<title>The Site with the LAMP : Tag Cloud</title>{% endblock %}
+
+
+{% block content %}
+
+<div class='row'>
+    {% for tag in tags %}
+      <div class='col-md-4'>
+         <h3><a href="/blog/tag/{{ tag.key.id }}/">{{ tag.name.0 }} ({{ tag.counter }})</a></h3>
+       </div>
+    {% endfor %}
+</div>
+{% endblock %}

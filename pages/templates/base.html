@@ -1,0 +1,113 @@
+{% load next_prev %}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="author" content="Raditha Dissanayake">
+    <link rel="shortcut icon" href="//raditha.com/assets/favicon.ico" />
+        
+    {% block description %}
+    {% endblock %}
+
+    {% block extra_headers %}{% endblock %}
+
+    {% block css %}
+	    <link rel="shortcut icon" href="/assets/favicon.ico" />
+	    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+	    <link rel="stylesheet" href="/assets/css/main.css">
+	        
+    {% endblock %}
+    {% block title %}
+    {% endblock %}
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+</head>
+
+<body>
+    
+{% block header %}
+  <div class="masthead hidden-sm" id="topContent">
+   <div class='row'>
+    <div class='col-sm-1'>
+      <img class='col-centered' src="http://images.raditha.com/lamp-micro.jpg">
+    </div>
+    <div class='col-sm-11'>
+     <ul class='list-list-unstyled'>
+      <li style='display:block'><a href="/">The Site With The LAMP</a></li>
+      <li style='display:block; font-size:13px'>A long standing, irregularly updated tech blog</li>
+     </ul>
+    </div>
+   </div>
+  </div>
+  <nav class="navbar navbar-inverse" role="navigation">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+             <a class="navbar-brand visible-sm" href="/">The site with the LAMP</a>
+          </div>
+        
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="/">Home</a></li>
+              <li><a href="/blog/">Blog</a></li>
+              <li><a href="/about.php">About</a></li>
+              <li><a href="/contact/">Contact</a></li>
+            </ul>
+          </div><!-- /.navbar-collapse -->
+   </nav>
+  {% endblock %} 
+    
+  <div id="container">
+   {% block container %}
+    {% block content %}{% endblock %}
+   {% endblock %}
+  </div>
+  {% block footer %}
+   <div id="footer">
+
+        <div class="footMenu">
+           <a href="/"><img src="/assets/lamp2.jpg" border="0" alt="A LAMP Portal"></a>
+        </div>
+
+        <div class="footMenu"><p>Site Info:</p>
+            <a class="footer" href="/">Home</a>
+            <a class="footer" href="/about.php">About</a>
+            <a class="footer" href="/contact.php">Contact</a>
+            <a class="footer" href="/terms.php">Terms of Use</a>
+            <a class="footer" href="/privacy.php">Privacy Policy</a>
+            <a class="footer" href="/sitemap.php">Site Map</a>
+            <a class="footer" href="/search/">Search</a>
+        </div>
+        <div class="footMenu"><p>Articles On:</p>
+            <a class="footer" href="/linux/">Linux</a>
+            <a class="footer" href="/mysql/">mySQL</a>
+            <a class="footer" href="/php/">PHP</a>
+            <a class="footer" href="/java/">Java</a>
+            <a class="footer" href="/wiki/">Wiki</a>
+            <a class="footer" href="/jabber/">Jabber</a>
+            <a class="footer" href="/etc/">/etc</a>
+        </div>
+        <div class="footMenu"><p>Also See:</p>
+            <a class="footer" href="/links.php">Links</a>
+            <a class="footer" href="/downloads/">Downloads</a>
+            <a class="footer" href="/blog/">Blog</a>
+        </div>
+        <div class="footMenu"><p>Sponsored By</p>
+            <a class="footer" href="http://road.lk/">road.lk</a>
+        </div>          
+        
+   </div>
+  {% endblock %}
+</body>
+{% block js %}
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src = "//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+{% endblock %}
+
+</html>

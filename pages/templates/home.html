@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load next_prev %}
+
+{% block content %}
+<div class='jumbotron'>
+ <div>raditha.com, The Site With The LAMP is dedicated to Linux, Apache, Mysql and Python (formerly PHP).
+   It's the work of Raditha Dissanayake, who has an affinity for these technologies as well as several other non
+    redmond technologies such as Java</div>
+
+ <div class='row' style="background-color:rgba(0, 0, 0, 0.0)">
+  {% autoescape off %}
+    {% for pic in pics %}
+      <div class='col-sm-3' ><a href='{{ pic.link }}'  class='thumbnail'><img src={{ pic.img }} ></a></div>
+    {% endfor %}
+  {% endautoescape %}
+ </div>
+ <div>These photos are from my infrequently updated <a href="http://photos.raditha.com/">photo blog</a></div>
+</div>
+<div class='row'>
+	<div class='col-sm-6'>
+	  <div style='margin-top:20px'>
+       {% tag_cloud 50 %}
+      </div> 
+	   <form class='form' style='margin:15px'>
+	    <div class="input-group">
+	      <input type="text" name='s' class="form-control">
+	      <span class="input-group-btn">
+	        <button class="btn btn-default" type="button">Search</button>
+	      </span>
+	    </div>
+	   </form> 
+
+	</div>
+	<div class='col-sm-6'>
+	   
+	   {% include 'posts.html' %}
+	</div>
+</div>
+
+{% endblock %}

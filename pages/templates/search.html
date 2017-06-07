@@ -1,0 +1,22 @@
+{% extends 'blog.html' %}
+{% load next_prev %}
+{% block extra_headers %}<meta name="robots" content="noindex, follow">{% endblock %}
+
+{% block title %}<title>road.lk blog archives for {{ year }}</title>{% endblock %}
+
+{% block content %}
+    {% for post in posts %}
+      <div class='blog-entry'>
+         <h3><a href=/{{ post.link }}>{{ post.title }}</a></h3>
+            <p>{{ post.published_at }}
+               {% for tag in post.tags %}
+                   <a href="/blog/tag/{{ tag|slugify }}/">{{ tag }}</a>
+                   {% if not forloop.last %}, {% endif %}
+               {% endfor %}
+            </p>
+            {% if post.summary %}
+               {{ post.summary }} ...
+            {% endif %}
+       </div>
+    {% endfor %}
+{% endblock %}

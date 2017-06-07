@@ -1,0 +1,102 @@
+{% extends "admin/base.html" %}
+{% block css %}
+  {{ block.super }}
+  <link rel="stylesheet" href="/assets/jQuery-File-Upload/css/jquery.fileupload.css">
+  <link rel="stylesheet" href="/assets/css/bootstrap-slider.min.css">
+{% endblock %}
+
+{% block content %}
+<div class='container'>
+    <div class='row'>
+        {% for image in images %}
+            <div class='col-md-2'>
+             <span class='thumbnail'><img src='{{ image.serving_url }}=s80-c' data-width='{{ image.width }}'></span>
+            </div>
+        {% endfor %}
+    </div>
+    <div class='row'>
+        <h1>Photo uploader</h2>
+
+
+        <div class='col-md-12'>
+        <!-- The fileinput-button span is used to style the file input field as button -->
+        <span class="btn btn-success fileinput-button">
+            <i class="glyphicon glyphicon-plus"></i>
+            <span>Add files...</span>
+            <!-- The file input field used as target for the file upload widget -->
+            <input id="fileupload" type="file" name="files[]" multiple>
+        </span>
+        <br>
+        <br>
+        <!-- The global progress bar -->
+        <div id="progress" class="progress">
+            <div class="progress-bar progress-bar-success"></div>
+        </div>
+        <!-- The container for the uploaded files -->
+        <div id="files" class="files"></div>
+        <br>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+            </div>
+            <div class="panel-body">
+                <ul>
+                    <li>The maximum file size for upload is <strong>5 MB</strong>.</li>
+                    <li>For best results please try to upload images that are aproximately 1024 pixels wide.</li>
+                    <li>Only image files (<strong>JPG, GIF, PNG</strong>) are accepted.</li>
+                    <li>You can <strong>drag &amp; drop</strong> files from your desktop  on this webpage (see <a href="https://github.com/blueimp/jQuery-File-Upload/wiki/Browser-support">Browser support</a>). Or click the 'add files' button and select multiple files</li>
+                </ul>
+            </div>
+        </div>
+      </div>    
+    </div>
+
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="myModalLabel">Link to image</h4>
+          </div>
+          <div class="modal-body">
+            <div class='row'><div class='col-md-3'><img id='now-showing' src=''></div>
+                <div class='col-md-9'><textarea id='img-link' rows='3' style='width:100%'></textarea>
+                Copy and paste this link into your blog post or webpage.
+                </div>
+            </div>
+            
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block js %}
+	{{ block.super }}
+	<!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
+	<script src="/assets/jQuery-File-Upload/js/vendor/jquery.ui.widget.js"></script>
+	<!-- The Load Image plugin is included for the preview images and image resizing functionality -->
+	<script src="/assets/jQuery-File-Upload/js/load-image.min.js"></script>
+	<!-- The Canvas to Blob plugin is included for image resizing functionality -->
+	<script src="/assets/jQuery-File-Upload/js/canvas-to-blob.min.js"></script>
+	
+	<!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
+	<script src="/assets/jQuery-File-Upload/js/jquery.iframe-transport.js"></script>
+	<!-- The basic File Upload plugin -->
+	<script src="/assets/jQuery-File-Upload/js/jquery.fileupload.js"></script>
+	<!-- The File Upload processing plugin -->
+	<script src="/assets/jQuery-File-Upload/js/jquery.fileupload-process.js"></script>
+	<!-- The File Upload image preview & resize plugin -->
+	<script src="/assets/jQuery-File-Upload/js/jquery.fileupload-image.js"></script>
+	<!-- The File Upload audio preview plugin -->
+	<script src="/assets/jQuery-File-Upload/js/jquery.fileupload-audio.js"></script>
+	<!-- The File Upload video preview plugin -->
+	<script src="/assets/jQuery-File-Upload/js/jquery.fileupload-video.js"></script>
+	<!-- The File Upload validation plugin -->
+	<script src="/assets/jQuery-File-Upload/js/jquery.fileupload-validate.js"></script>
+	<script src="/assets/js/admin-upload.js"></script>
+	<script src="/assets/js/bootstrap-slider.min.js"></script>
+{% endblock %}

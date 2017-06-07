@@ -1,0 +1,36 @@
+{% extends "admin/base.html" %}
+
+{% block content %}
+
+<div class='well well-small'>Entries
+  <span class="pull-right btn-group">
+    <a href="/list/" class='btn btn btn-info'>Pages</a>
+    <a href="/list/?type=blog" class='btn btn btn-info {% if obj_type == 'blog'%} disabled {% endif %}'>Blog posts</a>
+    <a href="/upload/" class='btn btn btn-info'>Photos</a>
+    <a href="/list/?type=faq" class='btn btn btn-info {% if obj_type == 'faq'%} disabled {% endif %}'>FAQ</a>
+    <a href="/edit/{% if obj_type %}?type={{ obj_type }}{% endif %}" class='btn btn btn-info'>Add Entry</a>
+  </span>
+
+</div>
+
+ <table class='table'>
+   <thead>
+     <tr><th>Page</th><th>Date</th>
+       {% if obj_type == 'blog' or obj_type == 'faq' %} <th>tags</th>  {% endif %}
+       <th>Priority</th>
+       <th>Draft</th>
+     </tr>
+  </thead>
+  <tbody id='list-items'>
+   {% include 'admin/_objects.html' %}
+  </tbody>
+ </table>
+
+ <button class='btn center-block' id='load-more' data-page='2' data-what='{{ obj_type }}'>Load more</button>
+{% endblock %}
+
+{% block js %}
+ {{ block.super }}
+    <script src="/assets/js/page-editor.js"></script>
+ 
+{% endblock %}

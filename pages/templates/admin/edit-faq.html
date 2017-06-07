@@ -1,0 +1,93 @@
+{% extends "admin/base.html" %}
+{% load bootstrap %}
+
+{% block css %}
+  {{ block.super }}
+  <link rel="stylesheet" href="/assets/css/jquery.simple-dtpicker.css" />
+  
+{% endblock %}
+{% block content %}
+
+<div class='row'>
+ <div class='col-md-10 col-md-offset-1'>
+    <div class='well well-small'> 
+        {% if page.title %}
+            Editing {{ page.title }}
+        {% else %}
+           Add new entry
+        {% endif %}
+    </div>
+        
+  <form role='form' method='post'>
+    <div class="form-group">
+          <span class='pull-right'>{{ form.title.errors.0 }}</span>
+          {{ form.title.label_tag }}
+          {{ form.title }}
+
+    </div>
+    <div class="form-group">
+          {{ form.content.label_tag }}
+          <span class='pull-right'>{{ form.content.errors.0 }}</span>
+         
+          {{ form.content }}
+    </div>
+ 
+    <div class='row'>
+      <div class='col-md-4'>
+            {{ form.published_at.label_tag }}
+            
+            <span class='pull-right'>{{ form.published_at.errors.0 }}</span> 
+            <div class='input-group date' id='datetimepicker'>
+                  
+                  {{ form.published_at }}
+                  <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar form-group-addon" id='dt-launcher'></span>
+                  </span>
+            </div>
+
+      </div>
+      <div class='col-md-4'>
+          {{ form.tags.label_tag }}
+          <span class='pull-right'>{{ form.tags.errors }}</span>
+          {{ form.tags }}
+      </div>
+      <div class='col-md-4'>
+          {{ form.priority|bootstrap }}
+
+      </div>
+
+    </div>
+    {{ form.key }}
+    {{ form.timestamp }}     
+    
+    <div class='row'>
+      <div class='col-md-3'>
+          {{ form.draft|bootstrap }}
+      </div>   
+      <div class='col-md-9'>
+          <input type='submit' class='btn' name='save' value='save' style='margin:15px 0' id='btn_save'/>
+          <input type='submit' class='btn' name='save' value='save_and_continue' style='margin: 15px 0' id='btn_save_continue'/>
+          {% if form.key.value %}
+               <input type='submit' class='btn btn-danger' name='save' value='delete' style='margin: 15px 0'/>
+          {% endif %}         
+        <input type='hidden' name='faq' value='true'/>
+        {{ form.slug }}
+      </div>   
+  </form>
+ </div>  
+</div>
+
+
+{% endblock %}
+
+{% block js %}
+ {{ block.super }}
+   <script type="text/javascript" src="/assets/ckeditor/ckeditor.js"></script>
+   <script type="text/javascript" src="/assets/js/jquery.simple-dtpicker.js"></script>
+   <script type="text/javascript" src="/assets/js/date.js"></script>
+   <script type="text/javascript" src="/assets/js/page-editor.js"></script>
+   
+{% endblock %}
+
+{% block footer %}
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'blog.html' %}
+{% load next_prev %}
+{% block extra_headers %}<meta name="robots" content="noindex, follow">{% endblock %}
+
+{% block title %}<title>The site with the LAMP Blog {% if page %} Page {{ page }} {% endif %}</title>{% endblock %}
+
+{% block content %}
+
+        {% for post in posts %}
+          <div class='blog-entry'>
+            <h3><a href=/blog/archives/{{ post.link }}>{{ post.title }}</a></h3>
+            
+             {% autoescape off %}
+                  {{ post.content }}
+             {% endautoescape %}
+            
+            <div class='tagline'>{{ post.published_at }}
+               {% if post.tags %} <span>&raquo;</span> Tagged:
+                  {% for tag in post.tags %} 
+                    <a href="/blog/tag/{{ tag|slugify }}"> {{ tag }}</a>
+                    {% if not forloop.last %}, {% endif %}
+                  {% endfor %}
+               {% endif %}</div>
+               
+          </div>
+
+        {% endfor %}
+          
+  <ul class="pager">
+   
+     {% next_link 'blog' posts.0.timestamp pagenum %} 
+     {% prev_link 'blog' posts.7.timestamp pagenum %}</ul>
+  
+        
+{% endblock %}

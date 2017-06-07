@@ -1,0 +1,22 @@
+{% extends 'layout.html' %}
+{% load next_prev %}
+
+{% block LHS %}
+
+{% endblock %}
+       
+{% block RHS %}
+ <div class='hidden-sm hidden-xs'>
+  <h4>Archives</h4>
+  {% archive_sidebar %}
+  <a href="/blog/archives/">Older</a>
+  <h4>TAGS</h4>
+  {% tag_cloud %}
+  <a href="/blog/tag/" style='display:block'>More ...</a>
+ </div>
+{% endblock %}        
+
+{% block js %} 
+{{ block.super }}
+<script type="text/javascript" src="/assets/js/common.js"></script>
+{% endblock %}

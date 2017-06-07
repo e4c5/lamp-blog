@@ -1,0 +1,19 @@
+{% extends 'blog.html' %}
+{% load next_prev %}
+
+{% block extra_headers %}<meta name="robots" content="noindex, follow">{% endblock %}
+
+
+{% block title %}
+    {% if tag %}<title>Entries tagged as {{ tag.name.0 }}</title> 
+    {% else %}<title>The the with the LAMP tag Cloud</title>{% endif %}
+{% endblock %}
+
+
+{% block content %}
+<h1>Posts tagged {{ tag.name.0 }}</h1>
+
+<div style='margin-left: 15px'>
+   {% include 'posts.html' %}
+</div>
+{% endblock %}

@@ -1,0 +1,4 @@
+mobilesp
+sulgify
+unidecode
+potatopage

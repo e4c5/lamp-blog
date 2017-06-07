@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}<title>Contact the Author</title>{% endblock %}
+{% block content %}
+
+<div class='row'>
+ <div class='container'>
+  <div class='jumbotron'>Thank you for your feedback. I will send our reply to {{ form.cleaned_data.email }} 
+    please check to make sure that this address is correct
+  </div> 
+ </div>
+</div>
+{% endblock %}

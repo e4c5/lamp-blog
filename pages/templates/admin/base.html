@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    {% if site.author %}<meta name="author" content="{{ site.author }}">{% endif %}
+    {% block description %}
+    {% endblock %}
+
+    {% block extra_headers %}{% endblock %}
+
+    <link rel="shortcut icon" href="//commondatastorage.googleapis.com/gs.road.lk/st0/favicon.ico" />
+
+    {% block css %}
+       <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+       <link rel="stylesheet" href="/assets/css/main.css">
+
+    {% endblock %}
+    {% block title %}
+    {% endblock %}
+</head>
+
+<body>
+  <div id="container" style="padding: 0 15px">
+     <div class='row'>
+            {% block content %}{% endblock %}
+     </div>
+  </div>
+
+{% block js %}
+<!--
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src = "//netdna.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script> -->
+    
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+            
+{% endblock %}
+
+         <div class="footer">
+           <footer>
+
+                <ul class='nav nav-pills'>
+                    <li class="/"><a href="https://roadlk.com/">Road.lk</a></li>
+                    <li><a href="https://roadlk.com/about/">About</a></li>
+                    <li><a href="https://roadlk.com/contact/">Contact</a></li>
+                    <li><a href="http://blog.roadlk.com/">Blog</a></li>
+                    <li><a href="https://roadlk.com/pp/">Privacy Policy</a></li>
+                    <li><a href="https://roadlk.com/tos/">Terms of Service</a></li>
+                    
+                </ul>
+                <a href="https://play.google.com/store/apps/details?id=lk.road">
+                    <img alt="Android app on Google Play"
+                        src="https://developer.android.com/images/brand/en_app_rgb_wo_45.png" />
+                </a>
+                <p class="smallText pull-right">&copy; Multiverse (Pvt) Ltd. 2012-2014</p>
+           </footer>
+         </div>
+</body>
+</html>

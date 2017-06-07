@@ -1,0 +1,36 @@
+application: radithablog
+version: 2
+runtime: python27
+api_version: 1
+threadsafe: true
+
+builtins:
+- remote_api: on
+- django_wsgi: on
+
+libraries:
+- name: django
+  version: "1.5"
+
+env_variables:
+  DJANGO_SETTINGS_MODULE: 'pages.settings'
+
+handlers:
+- url: /googleee852e1ffb0bc12a.html
+  static_files: assets/googleee852e1ffb0bc12a.html
+  upload: assets/googleee852e1ffb0bc12a.html
+
+- url: /robots.txt
+  static_files: assets/robots.txt
+  upload: assets/robots.txt
+
+
+- url: /favicon.ico
+  static_files: assets/favicon.ico
+  upload: assets/favicon.ico
+
+- url: /assets
+  static_dir: assets
+  expiration: '0'
+
+ 

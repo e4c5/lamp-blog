@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+{% block title %}<title>Contact the Author</title>{% endblock %}
+
+{% block content %}
+ <div class='row'>
+   <h1> Contact Information</h1>   
+   
+  <div class='col-md-6'>
+    <ul class='list-unstyled' style='font-size:16px; line-height:19px'>
+      <li style='margin:10px'>Telephone : +94777562242</li>
+      <li style='margin:10px'>Twitter : <a href="http://twitter.com/e4c5">@e4c5</a></li>
+      <li style='margin:10px'>Email : raditha at raditha.com </li>
+   </ul>
+  </div>
+  <div class='col-md-6'>
+    {{ form.errors }}
+    <form role='form' method='post'>
+        <div class="form-group">
+          {{ form.name.errors }}
+          <label for="id_name">Your name</label>
+          {{ form.name }}
+        </div>
+        <div class="form-group">
+          {{ form.email.errors }}
+          <label for="id_email">Email</label>
+          {{ form.email }}
+        </div>
+        <div class="form-group">
+          {{ form.body.errors }}
+          <label for="id_body">Message</label>
+          {{ form.body }}
+        </div>
+        <div class="form-group" style='text-align:right'>
+            <input type='submit' class='btn btn-sm btn-primary' name='Send'>
+        </div>    
+    </form>
+  </div>
+ </div>
+{% endblock %}

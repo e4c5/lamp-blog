@@ -1,0 +1,79 @@
+.masthead { 
+   color: #258;
+   padding-top: 5px; padding-bottom: 5px;
+
+}
+
+.blog-entry, .item-body { font-size: 16px }
+
+.masthead .row {
+   background-color:rgba(0, 0, 0, 0.0)
+}
+
+.masthead .col-sm* {   display: inline-block;
+    vertical-align: middle;
+    float: none; }
+    
+.masthead a {
+    font-size:20px;
+    font-style:normal;
+    font-weight:normal;
+    letter-spacing:-1px; 
+
+}
+.jumbotron img { max-height: 125px; }
+
+.row { margin-left: 0px; margin-right:0px ; background-color: white}
+
+a.footer { display:block; margin-left:25px ; text-decoration:none;  ;}
+div.footMenu {margin:30px; float:left; clear:right; text-align:left;    }
+
+.navbar-nav > li > a {padding-top:5px !important; padding-bottom:5px !important;}
+.navbar {min-height:32px !important; margin-bottom: 0px; border-radius: 0px}
+.navbar-inverse {background-color: #252C24 }
+
+
+.newboxTable
+{
+    float:right;
+    clear: left;
+    background-color: #FAFAFF;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    border-radius: 8px
+    margin: 0px 10px 10px 20px;
+    padding: 5px;
+    border-color: #D0D0FF;
+    border-width: 2px;
+    border-style: solid;
+    width: 236px;
+}
+
+.newboxText a
+{
+    font-size: 90%;
+    text-decoration: none;
+    color: #223366; 
+    display: block
+}
+
+a.newboxText:visited { color: #8D0749; }
+
+.newboxTitle
+{
+    color: #000099;
+    font-size: larger;
+}
+
+.snippet {
+    white-space: pre;
+    word-wrap: normal;
+    overflow: auto;
+
+    color: #003366;
+    font-family: courier new;
+    
+    font-size: 14px;
+    margin: 20px 0px 20px 25px;
+   
+}

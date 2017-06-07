@@ -1,0 +1,52 @@
+{% extends 'blog.html' %}
+{% load next_prev %}
+{% block extra_headers %}<meta name="robots" content="noindex, follow">{% endblock %}
+
+{% block title %}<title>The site with the LAMP archives for {{ year }}</title>{% endblock %}
+
+{% block content %}
+   {% if year %}
+	    <ol class="breadcrumb">
+	        <li><a href="/" data-pjax="#content">Blog</a></li>
+	        {% if year %}
+	            <li><a href="/blog/">Archives</a></li>
+	            {% if month %}
+	                <li><a href="/blog/{{ year }}/">{{ year }}</a></li>
+	                {% if day %}
+	                    <li><a href="/blog/{{ year }}/{{ month }}/">{{ month }}</a></li>
+	                {% else %}
+	                    <li>{{ month }}</li>
+	                {% endif %}
+	            {% else %}
+	                <li>{{ year }}</li>
+	            {% endif %}
+	        {% else %}
+	            <li>Archives</a></li>
+	        {% endif %}
+	        
+	        
+	    </ol>
+        {% include 'posts.html' %}
+    {% else %}
+        <h1>Archives</h1>
+       {% for column in posts %}
+       
+	    	<div class="col-md-4">
+	    	  {% autoescape off %}
+     		    <ul class='list-list-unstyled'>
+	    	       {% for item in column %}
+	    	          {{ item }}
+		           {% endfor %}
+		        </ul>
+		       {% endautoescape %}
+		    </div>
+	   {% endfor %}
+    {% endif %}  
+
+    <ul class="pager"> 
+      {% next_link 'blog'   %}
+      {% prev_link 'blog'   %}
+    </ul>        
+     
+     
+{% endblock %}

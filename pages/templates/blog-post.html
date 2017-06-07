@@ -1,0 +1,36 @@
+{% extends 'blog.html' %}
+{% load next_prev %}
+{% if page.summary %}
+   {% block description %}
+      <meta name="description" content = "{{ page.summary }}">
+   {% endblock %}
+{% endif %}
+    
+{% block title %}<title>{{ page.title }}</title>{% endblock %}
+
+{% block content %}
+    <div class="item"> 
+        <div class="item-header"> 
+            <h1>{{ page.title }}</h1>
+            <h4><span class='timestamp'>{{ page.timestamp }}</span>
+                {% if page.tags %} <span>&raquo;</span> Tagged as: 
+                  {% for tag in page.tags %} 
+                    <a href="/blog/tag/{{ tag|slugify }}"> {{ tag }}</a>
+                    {% if not forloop.last %}, {% endif %}
+                  {% endfor %}
+                {% endif %}
+            </h4>
+
+        </div>
+        
+        <div class="item-body">
+        {% autoescape off %}
+           {{ page.content }}
+        {% endautoescape %}
+        </div>
+    </div>
+
+<ul class="pager"> 
+    {% next_link 'post' page.timestamp %}
+    {% prev_link 'post' page.timestamp %}</ul>
+{% endblock %}

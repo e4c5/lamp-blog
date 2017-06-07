@@ -1,0 +1,14 @@
+  {% for page in pages %}
+    <tr><td><a href="/edit/{{ page.key.urlsafe }}{% if obj_type == 'faq' %}?type=faq{% endif %}">{{ page.title }}</a></td>
+      <td class='timestamp'>{{ page.timestamp }}</td>
+      {% if obj_type == 'blog' or obj_type == 'faq' %}
+        <td>{% for tag in page.tags %}
+              {{ tag }} 
+              {% if not forloop.last %} , {% endif %}
+            {% endfor %}
+        </td>
+      {% endif %}
+      <td><a href='{{ page.get_request_path }}?et={{page.priority}}' target="_blank">{{ page.priority }}</a></td> 
+      <td>{% if page.draft %}<span class="glyphicon glyphicon-ok"></span>{% endif %}</td>
+    </tr>
+  {% endfor %}

@@ -43,7 +43,7 @@ def home(request):
                 
         return render_to_response('search.html', {'posts': pages})
     else :
-        resp = memcache.get(KEY_HOME_PAGE, None)
+        resp = None #memcache.get(KEY_HOME_PAGE, None)
         if not resp :
             d = feedparser.parse('http://photos.raditha.com/feed.rss')
             pics = memcache.get('foto-feed', None)  # @UndefinedVariable

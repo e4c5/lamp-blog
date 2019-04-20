@@ -16,14 +16,14 @@ urlpatterns = patterns('',
 
 # the following section is usefull only during development and should be
 # commented out after deployment is completed.
-# urlpatterns += patterns('',
-#    url(r'^importer/$', legacy_importer),
-#    url(r'^rebuild-tags/$', 'pages.admin_views.rebuild_tags'),
-#    url(r'^rebuild-arch/$', 'pages.admin_views.rebuild_sidebar'),
-#    url(r'^rebuild-search/$', search_builder),
-#    url(r'^find-404/$', error404_finder),
+urlpatterns += patterns('',
+    url(r'^importer/$', legacy_importer),
+    url(r'^rebuild-tags/$', 'pages.admin_views.rebuild_tags'),
+    url(r'^rebuild-arch/$', 'pages.admin_views.rebuild_sidebar'),
+    url(r'^rebuild-search/$', search_builder),
+    url(r'^find-404/$', error404_finder),
                         
-#)
+)
 
 # this section is for the blog
 

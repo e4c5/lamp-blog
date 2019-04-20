@@ -48,7 +48,7 @@ def posts_tagged(request, slug):
         pages = Page.query().filter(
             Page.tags.IN(tag.name)).order(-Page.timestamp)
         resp = render_to_string('tag.html', {'posts': pages, 'tag': tag},
-                                context_instance=RequestContext(request))
+                                )
         return send_response(request, resp)
 
     return resp
@@ -114,7 +114,7 @@ def archives(request, year=None, month=None, day=None, page=None):
                                    'year': year,
                                    'month': month,
                                    'day': day},
-                                  context_instance=RequestContext(request))
+                                  )
         return send_response(request, resp)
 
     return resp

@@ -1,4 +1,4 @@
-from django.conf.urls import url, include
+from django.conf.urls import url
 from legacy import legacy_importer 
 from django.views.generic.base import RedirectView
 

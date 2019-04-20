@@ -7,6 +7,7 @@ from google.appengine.ext import ndb
 from django.template.defaultfilters import slugify
 from django.template.defaulttags import cycle
 from django.template import Library
+from django.utils.html import format_html, format_html_join, mark_safe
 
 from pages.models import Page, Archive, Tag
 
@@ -23,9 +24,8 @@ def next_link(context, page_type, timestamp = None, pagenum = None) :
             page = Page.query().filter(
                             ndb.AND(Page.timestamp > int(timestamp),Page.blog == True, Page.draft == False)).order(Page.timestamp).fetch(1)
             page = page[0]
-            return '<li style="float:right"><a href="/blog/archives/{0}">{1}&nbsp; &raquo;</a></li>'.format(
-                            page.link, page.title
-                        )
+            return format_html('<li style="float:right"><a href="/blog/archives/{0}">{1}&nbsp; &raquo;</a></li>',
+                            page.link, page.title)
         except Exception , e:
             print e
             pass
@@ -43,8 +43,8 @@ def next_link(context, page_type, timestamp = None, pagenum = None) :
             page = page[0]
             
             #print page
-            return '<li style="float:right"><a href="/blog/{0}">Newer entries&nbsp; &raquo;</a></li>'.format(
-                            "page/%s/" % pagenum if pagenum > 1 else ""         
+            format_html('<li style="float:right"><a href="/blog/{0}">Newer entries&nbsp; &raquo;</a></li>',
+                         "page/{0}/".format(pagenum if pagenum > 1 else "" )        
                         )
         except Exception , e:
             tb = traceback.format_exc()
@@ -59,7 +59,7 @@ def prev_link(context, page_type, timestamp = 0, pagenum = None):
             page = Page.query().filter(
                             ndb.AND(Page.draft == False, Page.blog == True,  Page.timestamp < int(timestamp))).order(-Page.timestamp).fetch(1)
             page = page[0]
-            return '<li style="float:left"><a href="/blog/archives/{0}">&laquo; &nbsp; {1}</a></li>'.format(
+            return format_html('<li style="float:left"><a href="/blog/archives/{0}">&laquo; &nbsp; {1}</a></li>',
                             page.link, page.title
                         )
         except Exception , e:
@@ -80,8 +80,8 @@ def prev_link(context, page_type, timestamp = 0, pagenum = None):
                 else :
                     prev = int(pagenum) + 2
     
-                return '<li style="float:left"><a href="/blog/{0}">&laquo; &nbsp;Older entries</a></li>'.format(
-                                "page/%s/" % prev if page else ""         
+                return format_html('<li style="float:left"><a href="/blog/{0}">&laquo; &nbsp;Older entries</a></li>',
+                                "page/{0}/".format(prev if page else "")         
                         )
             else :
                 return ''
@@ -100,7 +100,7 @@ def tag_cloud(count = 25):
     #print 'tag cloud'
     
     try:
-        resp = memcache.get("tag_sidebar", None)
+        resp = None # memcache.get("tag_sidebar", None)
         if not resp :
             rows = []
             tags = Tag.query(projection = ['name','counter']).order(-Tag.counter).fetch(count)
@@ -110,10 +110,11 @@ def tag_cloud(count = 25):
             tags = sorted(tags , key = lambda p: p.name)
             
             for tag in  tags:
-                rows.append('<a href="/blog/tag/%s/" style="font-size:%spx">%s</a>' % (slugify(tag.name[0]) ,
-                                                    float(14) + (float(tag.counter)*8.6)/max, tag.name[0]   ))
+                rows.append(format_html('<a href="/blog/tag/{}/" style="font-size:{:s}px">{}</a>',
+                                          slugify(tag.name[0]) ,
+                                          float(14) + (float(tag.counter)*8.6)/max, tag.name[0]   ))
         
-            resp = " ".join(rows)
+            resp = mark_safe(" ".join(rows))
             
             memcache.set("tag_sidebar", resp)
         return resp;
@@ -125,7 +126,7 @@ def tag_cloud(count = 25):
 @register.simple_tag    
 def archive_sidebar():
     try :
-        archs = memcache.get("archive_sidebar", None)
+        archs = None # memcache.get("archive_sidebar", None)
         if not archs :
             rows = []
             for arch in Archive.query().order(-Archive.dt).fetch(20) : 
@@ -133,7 +134,7 @@ def archive_sidebar():
                                                 datetime.strftime(arch.dt, '%B'), arch.year))
             
             result = "\n".join(rows)
-            archs = '<ul class="list-unstyled">' +  result + '</ul>'
+            archs = mark_safe('<ul class="list-unstyled">' +  result + '</ul>')
             memcache.set('archive_sidebar', archs)
             
         return archs

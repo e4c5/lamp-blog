@@ -6,3 +6,4 @@ unidecode/
 django_mobile/
 .settings
 .ropeproject
+lib

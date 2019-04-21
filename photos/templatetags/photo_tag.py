@@ -7,7 +7,6 @@ value in memcache, we start all over again from the first one
 
 from django.template import Library
 from django.contrib.auth.models import User
-from ratings.models import Participant
 from google.appengine.ext import ndb
 from google.appengine.api import memcache
 from photos.models import UserImage

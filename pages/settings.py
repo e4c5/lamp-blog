@@ -70,7 +70,7 @@ STATICFILES_FINDERS = (
 )
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = ''
+SECRET_KEY = '3&amp;xcoh#umbokv2-8jzw_$(!=%vnwt5nov9_la*%!t$o4px6o!0'
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
@@ -96,19 +96,29 @@ MIDDLEWARE_CLASSES = (
 
 ROOT_URLCONF = 'pages.urls'
 
+
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]
+
 SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
 
 # Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = 'pages.wsgi.application'
 
-TEMPLATE_DIRS = (
-                 os.path.join(os.path.dirname(__file__), 'templates'),
-    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
-)
 
-TEMPLATE_CONTEXT_PROCESSORS = ("django.core.context_processors.request",)
 
 ITEMS_PER_PAGE = 25
 
@@ -159,6 +169,8 @@ LOGGING = {
 }
 
 ALLOWED_HOSTS = "*"
-GAE_APP_NAME = ''
+GAE_APP_NAME = 'lampblog'
 
-AUTHORIZED_EMAILS = []
+AUTHORIZED_EMAILS = ['raditha.dissanayake@gmail.com','raditha@raditha.com','aditha.dissanayake@gmail.com',
+                     'indrani.dissanayake@gmail.com',
+                     'madhavi@raditha.com','daya@saadhu.com', 'raditha@road.lk']

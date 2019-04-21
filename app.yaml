@@ -6,14 +6,14 @@ threadsafe: true
 
 builtins:
 - remote_api: on
-- django_wsgi: on
 
 libraries:
-- name: django
-  version: "1.5"
-
+- name : ssl
+  version: latest
+  
 env_variables:
   DJANGO_SETTINGS_MODULE: 'pages.settings'
+  
 
 handlers:
 - url: /googleee852e1ffb0bc12a.html
@@ -33,4 +33,7 @@ handlers:
   static_dir: assets
   expiration: '0'
 
+ 
+- url: .*
+  script: pages.wsgi.application
  

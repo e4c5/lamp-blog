@@ -5,7 +5,7 @@ import re
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.conf import settings
 from django.utils import feedgenerator
-from django.shortcuts import render_to_response
+from django.shortcuts import render
 
 from django.template.loader import render_to_string
 from django.template.context import RequestContext
@@ -48,7 +48,7 @@ def posts_tagged(request, slug):
         pages = Page.query().filter(
             Page.tags.IN(tag.name)).order(-Page.timestamp)
         resp = render_to_string('tag.html', {'posts': pages, 'tag': tag},
-                                context_instance=RequestContext(request))
+                                )
         return send_response(request, resp)
 
     return resp
@@ -74,7 +74,7 @@ def archives(request, year=None, month=None, day=None, page=None):
                 part1 = pages[0:n/2]
                 part2 = pages[n/2:]
                 
-            return render_to_response('archives.html', 
+            return render(request, 'archives.html', 
                                   {'posts': [part1, part2] } )
             
         else :
@@ -108,13 +108,13 @@ def archives(request, year=None, month=None, day=None, page=None):
             per_page=settings.ITEMS_PER_PAGE,
             batch_size=2)
         pagenum = request.GET.get('page', 1)
-        resp = render_to_response('archives.html',
+        resp = render(request, 'archives.html',
                                   {'posts': paginator.page(pagenum),
                                    'pagenum': pagenum,
                                    'year': year,
                                    'month': month,
                                    'day': day},
-                                  context_instance=RequestContext(request))
+                                  )
         return send_response(request, resp)
 
     return resp

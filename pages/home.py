@@ -5,7 +5,7 @@ from google.appengine.api import search
 from google.appengine.api import memcache
 
 from django.utils.html import strip_tags
-from django.shortcuts import render_to_response
+from django.shortcuts import render
 from django.http.response import HttpResponse
 from django.template.loader import render_to_string
 
@@ -41,7 +41,7 @@ def home(request):
                 
                 pages.append(page)
                 
-        return render_to_response('search.html', {'posts': pages})
+        return render(request, 'search.html', {'posts': pages})
     else :
         resp = None #memcache.get(KEY_HOME_PAGE, None)
         if not resp :

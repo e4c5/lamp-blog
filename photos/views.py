@@ -5,7 +5,6 @@ import urllib
 import json
 
 from django.shortcuts import render
-from django.template.context import RequestContext
 from django.http import HttpResponse, HttpResponseRedirect
 
 from google.appengine.api import files, images
@@ -181,8 +180,7 @@ def upload_handler(request):
 
         if uploader.auth_check(request):
             images = UserImage.query()
-            return render(request, 'upload.html', {'images': images},
-                                      context_instance=RequestContext(request))
+            return render(request, 'upload.html', {'images': images})
         else:
             return HttpResponse(
                 "<a href='{}'>login</a>".format(users.create_login_url('/')))

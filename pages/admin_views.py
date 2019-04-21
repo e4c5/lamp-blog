@@ -3,6 +3,7 @@ import re
 import random
 import traceback
 
+
 from django.utils.html import strip_tags
 from django.shortcuts import render
 from django.http import HttpResponse, Http404, HttpResponseRedirect
@@ -202,7 +203,6 @@ def edit_page(request, slug = None):
     '''
     Edits a blog entry or a web page (creates one if needed)
     '''
-
     if is_authorized_user():
         page = None
         if request.method == 'GET' :
@@ -293,7 +293,7 @@ def edit_page(request, slug = None):
                         return HttpResponseRedirect('/list/')
             else :
                 print form.errors
-        return render(request, 'admin/edit-page.html', {'form': form, 'page': page} )
+        return render(request, 'admin/edit-page.html',{'form': form, 'page': page} )
     else :
         return HttpResponse("<a href='{}'>login</a>". format(users.create_login_url('/list/')))
 
@@ -366,7 +366,7 @@ def item_list(request):
             template = 'admin/_objects.html'
 
         return render(request, template, {'pages': paginator.page(pagenum),
-            'obj_type': t, 'pagenum': pagenum}, context_instance = RequestContext(request) )
+            'obj_type': t, 'pagenum': pagenum})
 
 
     else :

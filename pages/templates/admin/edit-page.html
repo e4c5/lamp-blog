@@ -25,6 +25,63 @@
     <div class="form-group">
           {{ form.content|bootstrap }}
     </div>
+ 
+     <div class="form-group">
+       <div class="panel panel-default">
+         <div class="panel-heading">
+           {{ form.summary.label_tag }}<a data-toggle="collapse"  href="#summaryContent"><span class="glyphicon glyphicon-collapse-down"></span></a>
+         </div>
+         <div class="panel-body collapse" id='summaryContent'>
+            {{ form.summary|bootstrap }}
+            {{ form.image|bootstrap }}
+         </div>
+       </div>
+    </div>
+       
+    <div class='row'>
+      <div class='col-md-3'>
+          {{ form.draft|bootstrap }}
+      </div>
+      <div class='col-md-3'>
+          {{ form.blog|bootstrap }}
+      </div>
+      <div class='col-md-3'>
+        <div class="form-group">
+          {{ form.link|bootstrap }}
+                      
+        </div>
+      </div>
+
+      <div class='col-md-3'>
+        <div class="form-group">
+          {{ form.priority|bootstrap }}
+        </div>
+      </div>
+      
+    </div>
+    <div class='row'>
+      <div class='col-md-4'>
+           <div class='input-group date' id='datetimepicker'>
+                 
+                 {{ form.published_at|bootstrap }}
+           </div>
+     </div>
+      <div class='col-md-4'>
+          {{ form.tags|bootstrap }}
+      </div>
+      <div class='col-md-4'>
+          {{ form.template|bootstrap }}
+      </div>
+
+    </div>
+    {{ form.key }}
+    {{ form.timestamp }}        
+    <input type='submit' class='btn' name='save' value='save' style='margin:15px 0' id='btn_save'/>
+    <input type='submit' class='btn' name='save' value='save and continue' style='margin: 15px 0' id='btn_save_continue'/>
+    {% if form.key.value %}
+        <input type='submit' class='btn btn-danger' name='save' value='delete' style='margin: 15px 0'/>
+    {% endif %}            
+  </form>
  </div>  
 
 

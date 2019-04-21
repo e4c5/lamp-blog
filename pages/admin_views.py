@@ -3,10 +3,8 @@ import re
 import random
 import traceback
 
-from django.template.context import RequestContext
-
 from django.utils.html import strip_tags
-from django.shortcuts import render_to_response
+from django.shortcuts import render
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 
 from google.appengine.ext import ndb
@@ -194,7 +192,7 @@ def edit_faq(request, slug):
                     return HttpResponseRedirect('/list/?type=faq')
             else :
                 print form.errors
-        return render_to_response('admin/edit-faq.html',{'form': form, 'page': faq} )
+        return render(request, 'admin/edit-faq.html',{'form': form, 'page': faq} )
     else :
         return HttpResponse("<a href='{}'>login</a>". format(users.create_login_url('/list/')))
 
@@ -204,6 +202,7 @@ def edit_page(request, slug = None):
     '''
     Edits a blog entry or a web page (creates one if needed)
     '''
+
     if is_authorized_user():
         page = None
         if request.method == 'GET' :
@@ -289,12 +288,12 @@ def edit_page(request, slug = None):
                     return HttpResponseRedirect('/edit/%s/' % page.link)
                 else :
                     if page.blog:
-                       return HttpResponseRedirect('/list/?type=blog')
+                        return HttpResponseRedirect('/list/?type=blog')
                     else :
                         return HttpResponseRedirect('/list/')
             else :
                 print form.errors
-        return render_to_response('admin/edit-page.html',{'form': form, 'page': page} )
+        return render(request, 'admin/edit-page.html', {'form': form, 'page': page} )
     else :
         return HttpResponse("<a href='{}'>login</a>". format(users.create_login_url('/list/')))
 
@@ -328,7 +327,7 @@ def delete_item(request, form = None, kind = 'Page'):
                 key = ndb.Key('Faq', int(form.data['key']))
                 page = key.get()
 
-            return render_to_response('admin/delete.html', {'key': page.key.id, 'title' :page.title , 'kind': kind})
+            return render(request, 'admin/delete.html', {'key': page.key.id, 'title' :page.title , 'kind': kind})
         else :
             return HttpResponse('Sorry but I cant delete non existent pages')
     else :
@@ -366,7 +365,7 @@ def item_list(request):
         else:
             template = 'admin/_objects.html'
 
-        return render_to_response(template, {'pages': paginator.page(pagenum),
+        return render(request, template, {'pages': paginator.page(pagenum),
             'obj_type': t, 'pagenum': pagenum}, context_instance = RequestContext(request) )
 
 

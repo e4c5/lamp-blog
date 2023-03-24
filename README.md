@@ -1,3 +1,13 @@
+sunsetting
+===
+
+My own blog is no longer powered by this software. I have built a new one using next.js
+that will be released soon
+
+
+
+
+
 A django blog that stores data in the google-cloud-datastore and runs
 on google-appengine.
 
